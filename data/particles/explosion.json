@@ -1,0 +1,11 @@
+{
+	"glow": true,
+	"shrink": 10,
+	"lifetime": 1,
+	"tone_variance": 6,
+	"colour": [250, 70, 70],
+	"initial_velocity": [1, 1],
+	"velocity_randomness": [[-400, 400], [-1000, 400]],
+	"radius": 12,
+	"gravity": [0, 400]
+}
