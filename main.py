@@ -108,6 +108,7 @@ class Player:
 		self.vel = [0, 2]
 		self.speed = 600
 		self.trail = Particles_emitter('data/particles/trail.json')
+		self.end_game = False;
 	def draw(self):
 		self.trail.draw()
 		
@@ -124,6 +125,10 @@ class Player:
 			self.vel[1] += -self.speed * dt
 		if keys[pygame.K_s]:
 			self.vel[1] += self.speed * dt
+
+		if keys[pygame.K_SPACE] and self.end_game:
+			GAME = Game()
+			GAME.tick()
 
 		self.hitbox.x += self.vel[0] * dt
 		self.hitbox.y += self.vel[1] * dt
@@ -227,8 +232,11 @@ class Game:
 			pygame.draw.circle(win,(200, 170, 235), (player.hitbox.x + player.hitbox.width / 2 - cam[0], player.hitbox.y + player.hitbox.width / 2 - cam[1]), player.hitbox.width / 2)
 			self.timer -= 1 * dt
 			if self.timer < 0:
-				GAME = Menu()
-				GAME.tick()
+				points = []
+				player.end_game = True;
+				write('Restart with space.', 75, 0, 200, (200, 240, 255))
+				# GAME = Menu()
+				# GAME.tick()
 			# Update screen
 			pygame.display.update()
 
